@@ -2,7 +2,7 @@
 
 This project measures **how sentiment toward footballer [Nicolò Zaniolo](https://en.wikipedia.org/wiki/Nicol%C3%B2_Zaniolo)** evolved across a window of social posts, using a **Hugging Face** multilingual sentiment model and **monthly** aggregation.
 
-The main entry point is `[hf_model.ipynb](hf_model.ipynb)`.
+The main entry point is [`hf_model.ipynb`](hf_model.ipynb).
 
 ## What are we trying to do:
 
@@ -10,26 +10,26 @@ The main entry point is `[hf_model.ipynb](hf_model.ipynb)`.
 
 ## Graphs
 
-Monthly aggregates from the scored corpus (`output/sentiment_scores.csv` after running `[hf_model.ipynb](hf_model.ipynb)`).
+Monthly aggregates from the scored corpus (`output/sentiment_scores.csv` after running [`hf_model.ipynb`](hf_model.ipynb)).
 
 ### Monthly sentiment mix
 
 Share of posts labeled **positive** (green), **neutral** (dotted), and **negative** (red) per calendar month. The three series sum to 1.0 each month by construction.
 
-Monthly sentiment mix: share of positive, neutral, and negative labels per month
+![Monthly sentiment mix: share of positive, neutral, and negative labels per month](output/sentiment_trends.png)
 
 ### Monthly post volume
 
 Number of posts per month (same timeline as the sentiment chart). Use this to judge how reliable each month’s shares are—sparse months swing more easily.
 
-Monthly post volume: number of posts per month
+![Monthly post volume: number of posts per month](output/tweet_volume.png)
 
 ## Data
 
 
 | Item                                                | Detail                                                                      |
 | --------------------------------------------------- | --------------------------------------------------------------------------- |
-| **Source file**                                     | `data/eng_content_v2.csv` (see `[config.py](config.py)` → `input_csv_path`) |
+| **Source file**                                     | `data/eng_content_v2.csv` (see [`config.py`](config.py) → `input_csv_path`) |
 | **Columns used**                                    | `content_snippet`, `published`, `indexed`                                   |
 | **Volume**                                          | ~9,385 rows (after cleaning empty snippets)                                 |
 | **Time span** (parsed from `indexed` / `published`) | **2023-01-08** through **2024-12-01**                                       |
@@ -56,11 +56,11 @@ The CSV is English-oriented social snippets that mention Zaniolo.
     └── tweet_volume.png
 ```
 
-The layout above is the one `[config.py](config.py)` expects by default.
+The layout above is the one [`config.py`](config.py) expects by default.
 
 ## Method (Hugging Face model)
 
-- **Model:** `[cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual](https://huggingface.co/cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual)` — tuned for short social text, multilingual.
+- **Model:** [`cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual`](https://huggingface.co/cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual) — tuned for short social text, multilingual.
 - **Inference:** `transformers.pipeline` with `top_k=None` (all classes), truncation, batching per `config.BATCH_SIZE`.
 - **Trends:** Per calendar month, each series is the **fraction of posts** whose **argmax label** is positive / neutral / negative (see `utils.roll`).
 
@@ -69,12 +69,11 @@ The layout above is the one `[config.py](config.py)` expects by default.
 
 | File                                                  | Description                                                                     |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `[sentiment_scores.csv](output/sentiment_scores.csv)` | Per-post dates, cleaned text, predicted label, probabilities, and score column. |
-| `[sentiment_trends.png](output/sentiment_trends.png)` | Lines: monthly **share** of positive (green), neutral (dotted), negative (red). |
-| `[tweet_volume.png](output/tweet_volume.png)`         | Bars: **post count** per month (same timeline).                                 |
+| [`sentiment_scores.csv`](output/sentiment_scores.csv) | Per-post dates, cleaned text, predicted label, probabilities, and score column. |
+| [`sentiment_trends.png`](output/sentiment_trends.png) | Lines: monthly **share** of positive (green), neutral (dotted), negative (red). |
+| [`tweet_volume.png`](output/tweet_volume.png)         | Bars: **post count** per month (same timeline).                                 |
 
-
-Figures live under `output/` and are rendered in **[Graphs](#graphs)**. Regenerate them with `[hf_model.ipynb](hf_model.ipynb)` (final plotting cell) or by running `get_trend` → `plot_trend_df` on `sentiment_scores.csv`.
+The PNGs are **embedded** under [Graphs](#graphs) above (not link-only). Regenerate them with [`hf_model.ipynb`](hf_model.ipynb) (final plotting cell) or by running `get_trend` → `plot_trend_df` on `sentiment_scores.csv`.
 
 ## How to run
 
@@ -89,5 +88,5 @@ Figures live under `output/` and are rendered in **[Graphs](#graphs)**. Regenera
 
 ## Related files
 
-- `[requirements.txt](requirements.txt)` — Python dependencies.
+- [`requirements.txt`](requirements.txt) — Python dependencies.
 
