@@ -35,7 +35,7 @@ Number of posts per month (same timeline as the sentiment chart). Use this to ju
 | **Time span** (parsed from `indexed` / `published`) | **2023-01-08** through **2024-12-01**                                       |
 
 
-The CSV is English-oriented social snippets that mention Zaniolo.
+The CSV is social snippets that mention Zaniolo.
 
 ## Directory structure
 
@@ -73,7 +73,6 @@ The layout above is the one [`config.py`](config.py) expects by default.
 | [`sentiment_trends.png`](output/sentiment_trends.png) | Lines: monthly **share** of positive (green), neutral (dotted), negative (red). |
 | [`tweet_volume.png`](output/tweet_volume.png)         | Bars: **post count** per month (same timeline).                                 |
 
-The PNGs are **embedded** under [Graphs](#graphs) above (not link-only). Regenerate them with [`hf_model.ipynb`](hf_model.ipynb) (final plotting cell) or by running `get_trend` → `plot_trend_df` on `sentiment_scores.csv`.
 
 ## How to run
 
@@ -81,7 +80,6 @@ The PNGs are **embedded** under [Graphs](#graphs) above (not link-only). Regener
   ```bash
    pip install -r requirements.txt
   ```
-   If the pipeline complains about **protobuf**, install it in the same environment and retry.
 2. Put `eng_content_v2.csv` under `data/` (or update `config.input_csv_path`).
 3. Open `**hf_model.ipynb`** and run all cells.
 4. Check `output/sentiment_scores.csv`, `output/sentiment_trends.png`, and `output/tweet_volume.png`.
