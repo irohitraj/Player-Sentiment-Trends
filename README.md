@@ -16,13 +16,13 @@ Monthly aggregates from the scored corpus (`output/sentiment_scores.csv` after r
 
 Share of posts labeled **positive** (green), **neutral** (dotted), and **negative** (red) per calendar month. The three series sum to 1.0 each month by construction.
 
-![Monthly sentiment mix: share of positive, neutral, and negative labels per month](output/sentiment_trends.png)
+![Monthly sentiment mix: share of positive, neutral, and negative labels per month](https://github.com/irohitraj/Player-Sentiment-Trends/blob/main/output/sentiment_trends.png)
 
 ### Monthly post volume
 
 Number of posts per month (same timeline as the sentiment chart). Use this to judge how reliable each month’s shares are—sparse months swing more easily.
 
-![Monthly post volume: number of posts per month](output/tweet_volume.png)
+![Monthly post volume: number of posts per month](https://github.com/irohitraj/Player-Sentiment-Trends/blob/main/output/tweet_volume.png)
 
 ## Data
 
